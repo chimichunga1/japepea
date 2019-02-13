@@ -160,7 +160,7 @@ include("admin_navbar.php");
 
 
 
-<button class="btn btn-success col-md-12" data-toggle="collapse" data-target="#invoice"> <center>GENERATE INVOICE &nbsp;<i class="glyphicon glyphicon-print"></i></center></button>
+<button class="btn btn-success col-md-12" data-toggle="collapse" data-target="#invoice"> <center>GENERATE REPORTS &nbsp;<i class="glyphicon glyphicon-print"></i></center></button>
 
 <div id="invoice" class="collapse">
   <br>

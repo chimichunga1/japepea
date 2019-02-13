@@ -193,7 +193,7 @@ $table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
 <br>
 <br>
 
-<button class="btn btn-primary col-md-12" data-toggle="collapse" data-target="#invoice"> <center>GENERATE INVOICE &nbsp;<i class="glyphicon glyphicon-print"></i></center></button>
+<button class="btn btn-primary col-md-12" data-toggle="collapse" data-target="#invoice"> <center>GENERATE REPORTS &nbsp;<i class="glyphicon glyphicon-print"></i></center></button>
 
 <div id="invoice" class="collapse">
   <br>
