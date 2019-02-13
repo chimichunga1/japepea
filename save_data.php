@@ -310,7 +310,15 @@ if(isset($_POST['add_stocks']))
 	echo $random_num."<br>";
 */
 
-	$insert_user = "INSERT INTO admin_stocks (`stocks_code`,`stocks_itemname`,`stocks_quantity`,`stocks_priceperunit`,`stocks_supplierid`,`stocks_categoriesid`) VALUES ('".$random_num."','".$stock_itemname."','".$stock_quantity."','".$stock_priceperunit."','".$stock_supplierid."','".$stock_categoriesid."') ";
+
+$day = date('d');
+$week = date('W');
+$month = date('F');
+$year = date('Y');
+
+
+
+	$insert_user = "INSERT INTO admin_stocks (`stocks_code`,`stocks_itemname`,`stocks_quantity`,`stocks_priceperunit`,`stocks_supplierid`,`stocks_categoriesid`,`day`,`week`,`month`,`year`) VALUES ('".$random_num."','".$stock_itemname."','".$stock_quantity."','".$stock_priceperunit."','".$stock_supplierid."','".$stock_categoriesid."','".$day."','".$week."','".$month."','".$year."') ";
 	$run_insert_user = mysqli_query($connect,$insert_user);
 
 

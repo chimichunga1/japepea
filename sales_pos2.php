@@ -60,6 +60,11 @@ include("admin_navbar.php");
               <div class="box-body">
 <br><br>
             <form method="POST" action="sales_pos1.php">
+                <div class="form-group">
+                    <label>Select Week :</label>
+                  <input type="number" class="form-control" min="1" max="52" id="week" placeholder="Enter week" name="week" required>
+                </div>
+
 
                   <div class="form-group">
                     <label>Select Week :</label>
@@ -74,7 +79,7 @@ include("admin_navbar.php");
 
                   <br>
 
-                  <div class="form-group">
+<!--                   <div class="form-group">
                     <label>Select Month :</label>
                     <select name="month" class="form-control">
                       <option value="January">January</option>
@@ -91,7 +96,7 @@ include("admin_navbar.php");
                       <option value="December">December</option>
                     </select>
                   </div>
-
+ -->
                   <br>
 
                 <div class="form-group">
@@ -151,28 +156,133 @@ include("admin_navbar.php");
 </div>
 </div>
 <br>
+<br>
+
+
+
+<button class="btn btn-success col-md-12" data-toggle="collapse" data-target="#invoice"> <center>GENERATE INVOICE &nbsp;<i class="glyphicon glyphicon-print"></i></center></button>
+
+<div id="invoice" class="collapse">
+  <br>
+  <br><br>
+            <!-- /.box-header -->
+            <div class="box-body">
+<form method="POST" action="generate_pos_weekly.php">
+              <div class="box-body">
+
+
+                  <div class="form-group">
+                    <label>Select Week :</label>
+                  <input type="number" class="form-control" min="1" max="52" id="week" placeholder="Enter week" name="week" required>
+                  </div>
+
+                  <br>
+
+                <div class="form-group">
+                  <label for="year">Enter Year : </label>
+                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                </div>
+
+<input type="hidden" name="pos_id" value="pos2">
+<button type="submit" name="weekly" class="btn btn-primary col-md-12">Generate Data <i class="glyphicon glyphicon-print"></i></button>
+<br>
+
+</form>
+            <form method="POST" action="generate_pos_monthly.php">
+                  <div class="form-group">
+                    <label>Select Month :</label>
+                    <select name="month" class="form-control">
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                    </select>
+                  </div>
+
+                  <br>
+
+                <div class="form-group">
+                  <label for="year">Enter Year : </label>
+                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                </div>
+
 
 <br>
+<input type="hidden" name="pos_id" value="pos2">
+<button type="submit" name="monthly" class="btn btn-primary col-md-12">Generate Data <i class="glyphicon glyphicon-print"></i></button>
+<br>
+
+</form>
+
+            <form method="POST" action="generate_pos_yearly.php">
+
+                <div class="form-group">
+                  <label for="year">Enter Year : </label>
+                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                </div>
+<input type="hidden" name="pos_id" value="pos2">
+
+<button type="submit" name="yearly" class="btn btn-primary col-md-12">Generate Data <i class="glyphicon glyphicon-print"></i></button>
+
+</form>
+
+
+
+
+              </div>
+              <!-- /.box-body -->
+
+
+<br>
+              <div class="box-footer">
+
+              </div>
+            </form>
+
+
+
+            </div>
+
+</div>
+
+
+
+<br><br>
 
 <?php 
 
 
 if(isset($_POST['weekly'])){
+
+  if((int)$_POST['week'] < 10){
+  $week = "0".$_POST['week'];
+}else{
   $week = $_POST['week'];
-  $month = $_POST['month'];
+}
+
+
+
   $year = $_POST['year'];
 
  ?>
 
-<b><h4>Week # <?php echo $week." of ".$month." ".$year;?></h4></b>
+<b><h4>Week # <?php echo $week." Week of Year ".$year;?></h4></b>
 
 <table class="table table-striped table-bordered" id = "example">
                 <thead>
                 <tr>
                   <th>SALES ID</th>
                   <th>Date</th>  
-                  <th>sales Vatsales</th>
-                  <th>Sales Nonvatsales</th>
+                  <th>Sales Vat Sales</th>
+                  <th>Sales Non-Vat Sales</th>
 
                 </tr>
                 </thead>
@@ -182,7 +292,7 @@ if(isset($_POST['weekly'])){
 
 
 <?php 
-$table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 2' AND week = '$week' AND month = '$month' AND year = '$year' AND  isDeleted = '0' ORDER BY week ASC";
+$table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 2' AND week = '$week' AND year = '$year' AND  isDeleted = '0' ORDER BY week ASC";
         
         
         
@@ -233,8 +343,8 @@ $table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 2' AND week = '$we
                 <tr>
                   <th>SALES ID</th>
                   <th>Date</th>  
-                  <th>sales Vatsales</th>
-                  <th>Sales Nonvatsales</th>
+                  <th>Sales Vat Sales</th>
+                  <th>Sales Non-Vat Sales</th>
 
                 </tr>
                 </thead>
@@ -293,8 +403,8 @@ $table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 2' AND month = '$m
                 <tr>
                   <th>SALES ID</th>
                   <th>Date</th>  
-                  <th>sales Vatsales</th>
-                  <th>Sales Nonvatsales</th>
+                  <th>Sales Vat Sales</th>
+                  <th>Sales Non-Vat Sales</th>
 
                 </tr>
                 </thead>
@@ -356,8 +466,8 @@ $year = date('Y');
                 <tr>
                   <th>SALES ID</th>
                   <th>Date</th>  
-                  <th>sales Vatsales</th>
-                  <th>Sales Nonvatsales</th>
+                  <th>Sales Vat Sales</th>
+                  <th>Sales Non-Vat Sales</th>
 
                 </tr>
                 </thead>

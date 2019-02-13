@@ -112,6 +112,7 @@ if(isset($_POST['Login']))
 				if($_SESSION['attempt_counter'] == 0){
 						$block_account = "UPDATE admin_accounts SET isBlocked = '1' WHERE username ='$username'";
 						$run_block_account = mysqli_query($connect,$block_account);
+						$_SESSION['attempt_counter'] = 3;
 					echo '<script language="javascript">';
 					echo 'alert("This Account has been blocked!")';
 					echo '</script>';

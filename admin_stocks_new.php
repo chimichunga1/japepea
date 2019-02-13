@@ -127,7 +127,7 @@ $table2 = "SELECT * FROM admin_suppliers WHERE isDeleted = '0'";
 
         {
 ?>
-                    <option value="<?php echo $row['supplier_id']; ?>"><?php echo $row['supplier_name']; ?></option>
+                    <option value="<?php echo $row['supplier_name']; ?>"><?php echo $row['supplier_name']; ?></option>
    
 <?php 
         }
@@ -155,7 +155,7 @@ $table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
 
         {
 ?>
-                    <option value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?></option>
+                    <option value="<?php echo $row['category_name']; ?>"><?php echo $row['category_name']; ?></option>
    
 <?php 
         }
@@ -189,6 +189,103 @@ $table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
             </div>
 
 </div>
+
+<br>
+<br>
+
+<button class="btn btn-primary col-md-12" data-toggle="collapse" data-target="#invoice"> <center>GENERATE INVOICE &nbsp;<i class="glyphicon glyphicon-print"></i></center></button>
+
+<div id="invoice" class="collapse">
+  <br>
+  <br><br>
+            <!-- /.box-header -->
+            <div class="box-body">
+<form method="POST" action="generate_stocks_weekly.php">
+              <div class="box-body">
+
+
+                  <div class="form-group">
+                    <label>Select Week :</label>
+                  <input type="number" class="form-control" min="1" max="52" id="week" placeholder="Enter week" name="week" required>
+                  </div>
+
+                  <br>
+
+                <div class="form-group">
+                  <label for="year">Enter Year : </label>
+                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                </div>
+
+
+<button type="submit" name="weekly" class="btn btn-primary col-md-12">Generate Data <i class="glyphicon glyphicon-print"></i></button>
+<br>
+
+</form>
+            <form method="POST" action="generate_stocks_monthly.php">
+                  <div class="form-group">
+                    <label>Select Month :</label>
+                    <select name="month" class="form-control">
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                      <option value="August">August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                    </select>
+                  </div>
+
+                  <br>
+
+                <div class="form-group">
+                  <label for="year">Enter Year : </label>
+                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                </div>
+
+
+<br>
+<button type="submit" name="monthly" class="btn btn-primary col-md-12">Generate Data <i class="glyphicon glyphicon-print"></i></button>
+<br>
+
+</form>
+
+            <form method="POST" action="generate_stocks_monthly.php">
+
+                <div class="form-group">
+                  <label for="year">Enter Year : </label>
+                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                </div>
+
+
+<button type="submit" name="yearly" class="btn btn-primary col-md-12">Generate Data <i class="glyphicon glyphicon-print"></i></button>
+
+</form>
+
+
+
+
+              </div>
+              <!-- /.box-body -->
+
+
+<br>
+              <div class="box-footer">
+
+              </div>
+            </form>
+
+
+
+            </div>
+
+</div>
+
+
 
 <div class="col-md-12">
 <table class="table table-striped table-bordered" id = "teacher_table">
@@ -230,7 +327,7 @@ $table2 = "SELECT * FROM admin_stocks WHERE isDeleted = '0'";
                   <td><?php echo $row['stocks_code']; ?> </td>
                   <td><?php echo $row['stocks_itemname']; ?></td>
                   <td><?php echo $row['stocks_quantity']; ?> </td>
-                  <td><?php echo $row['stocks_priceperunit']; ?></td>
+                  <td><?php echo "P".$row['stocks_priceperunit'].".00"; ?></td>
                   <td><?php echo $row['stocks_supplierid']; ?> </td>
                   <td><?php echo $row['stocks_categoriesid']; ?> </td>
 

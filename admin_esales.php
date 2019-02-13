@@ -145,12 +145,6 @@ $date =  date('F j Y');
 </form>
 </div>
 
-<br>
-<br>
-
-
-
-
 
 
 <a class="btn btn-primary col-md-12" href="sales_pos1.php"> <center>POS 1 &nbsp;</center></a>

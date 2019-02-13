@@ -143,7 +143,7 @@ CREATE TABLE `admin_logs` (
   `logs_remarks` varchar(255) NOT NULL,
   `logs_date` varchar(255) NOT NULL,
   PRIMARY KEY (`logs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admin_logs` */
 
@@ -184,7 +184,9 @@ insert  into `admin_logs`(`logs_id`,`logs_username`,`logs_remarks`,`logs_date`) 
 (34,'admin','USER HAS ADDED STOCK ID 9TO INVOICE ID1','February 10, 2019 5:14:pm  '),
 (35,'admin','USER HAS LOGGED OUT','February 10, 2019 8:34:pm  '),
 (36,'admin','USER HAS LOGGED IN','February 10, 2019 8:36:pm  '),
-(37,'admin','USER HAS LOGGED IN','February 10, 2019 8:38:pm  ');
+(37,'admin','USER HAS LOGGED IN','February 10, 2019 8:38:pm  '),
+(38,'admin','USER HAS LOGGED IN','February 13, 2019 8:44:pm  '),
+(39,'admin','USER HAS LOGGED IN','February 13, 2019 10:18:pm  ');
 
 /*Table structure for table `admin_reports` */
 
@@ -221,9 +223,12 @@ CREATE TABLE `admin_sales` (
   `year` varchar(255) DEFAULT NULL,
   `isDeleted` varchar(255) DEFAULT '0',
   PRIMARY KEY (`sales_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admin_sales` */
+
+insert  into `admin_sales`(`sales_id`,`sales_date`,`sales_posno`,`sales_vatmerchsales`,`sales_vatcomtrans`,`sales_vatsales`,`sales_nonvatsales`,`sales_vatexscsales`,`sales_vatexsales`,`day`,`week`,`month`,`year`,`isDeleted`) values 
+(1,'2019-12-08','POS 1','2500','1000','2000','3000','1400','200','13','07','February','2019','0');
 
 /*Table structure for table `admin_stocks` */
 
@@ -238,14 +243,18 @@ CREATE TABLE `admin_stocks` (
   `stocks_supplierid` varchar(255) NOT NULL,
   `stocks_categoriesid` varchar(255) NOT NULL,
   `isDeleted` varchar(255) NOT NULL DEFAULT '0',
+  `day` varchar(255) DEFAULT NULL,
+  `week` varchar(255) DEFAULT NULL,
+  `month` varchar(255) DEFAULT NULL,
+  `year` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`stocks_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admin_stocks` */
 
-insert  into `admin_stocks`(`stocks_id`,`stocks_code`,`stocks_itemname`,`stocks_quantity`,`stocks_priceperunit`,`stocks_supplierid`,`stocks_categoriesid`,`isDeleted`) values 
-(1,'56895944','Cream-o','23','200','5','2','0'),
-(9,'12036143','Summit','2','33','5','3','0');
+insert  into `admin_stocks`(`stocks_id`,`stocks_code`,`stocks_itemname`,`stocks_quantity`,`stocks_priceperunit`,`stocks_supplierid`,`stocks_categoriesid`,`isDeleted`,`day`,`week`,`month`,`year`) values 
+(1,'56895944','Cream-o','23','200','5','2','0','12','07','February','2019'),
+(9,'12036143','Summit','2','33','5','3','0','12','07','February','2019');
 
 /*Table structure for table `admin_suppliers` */
 
