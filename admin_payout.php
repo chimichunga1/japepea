@@ -158,6 +158,12 @@ RIGHT JOIN admin_itemsordered ON admin_stocks.stocks_id = admin_itemsordered.sto
 
 
 $run_ordered = mysqli_query($connect,$table2_ordered);
+if(empty($run_ordered)){
+        echo '<script language="javascript">';
+      echo 'alert("THIS INVOICE IS EMPTY!")';
+      echo '</script>';
+      echo"<script>window.location.href='admin_view_invoice_new.php';</script>";  
+}
 
 while($row_ordered = mysqli_fetch_assoc($run_ordered))
 
@@ -242,8 +248,23 @@ while($row_ordered = mysqli_fetch_assoc($run_ordered))
                 <td>$5.80</td>
               </tr>
               <tr> -->
-                <th>Total:</th>
-                <td>P <?php echo $_SESSION['invoice_total']; ?>.00</td>
+                <th>Sub-Total:<br>&nbsp;Vat (12%) : <br>Total : </th>
+                <td>P <?php echo $_SESSION['invoice_total']; ?>.00 <br>
+
+                  <?php 
+                  $total_invoice = $_SESSION['invoice_total'] - (int)$_SESSION['invoice_total']*.12;
+
+                  echo  "P".(int)$_SESSION['invoice_total']*.12.".00";
+
+
+
+                  ?>
+
+
+                  <br>
+                  <?php echo  "P".$total_invoice.".00"; ?>
+                </td>
+
               </tr>
             </table>
           </div>

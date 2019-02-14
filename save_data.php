@@ -402,6 +402,8 @@ $get_invoiceid =  $_POST['get_invoiceids'];
       {
 
       	$stocks_quantity = $row_stocks['stocks_quantity'];
+      	$get_supplierid = $row_stocks['stocks_supplierid'];
+      	$get_categoryid = $row_stocks['stocks_categoriesid'];
       }
 
       $new_total = (int)$stocks_quantity - (int)$get_quantity;
@@ -418,6 +420,79 @@ $get_invoiceid =  $_POST['get_invoiceids'];
 
 
 
+      $get_stocks = "SELECT * FROM admin_stocks WHERE stocks_id = '$get_stocksid' AND isDeleted='0'";
+
+
+
+      $run_stocks = mysqli_query($connect,$get_stocks);
+
+      while($row_stocks = mysqli_fetch_array($run_stocks))
+
+      {
+
+      	$stocks_code = $row_stocks['stocks_code'];
+        $stocks_itemname = $row_stocks['stocks_itemname'];    	
+        $stocks_priceperunit = $row_stocks['stocks_priceperunit'];   
+        $stocks_supplierid = $row_stocks['stocks_supplierid'];
+        $stocks_categoriesid = $row_stocks['stocks_categoriesid'];
+
+
+      }
+
+
+
+      $get_supplier = "SELECT * FROM admin_suppliers WHERE supplier_id = '$get_supplierid' AND isDeleted='0'";
+
+
+
+      $run_supplier = mysqli_query($connect,$get_supplier);
+
+      while($row_supplier = mysqli_fetch_array($run_supplier))
+
+      {
+      	$supplier_name = $row_supplier['supplier_name'];
+
+
+        
+      }
+
+
+            $get_categories = "SELECT * FROM admin_categories WHERE category_id = '$get_categoryid' AND isDeleted='0'";
+
+
+
+      $run_categories = mysqli_query($connect,$get_categories);
+
+      while($row_categories = mysqli_fetch_array($run_categories))
+
+      {
+
+      	$category_name = $row_categories['category_name'];
+
+        
+      }
+
+
+
+$day = date('d');
+$week = date('W');
+$month = date('F');
+$year = date('Y');
+
+	$insert_invoice = "INSERT INTO admin_pullout (`stocks_code`,`stocks_itemname`,`stocks_quantity`,`stocks_priceperunit`,`supplier_name`,`category_name`,`day`,`week`,`month`,`year`) VALUES ('".$stocks_code."','".$stocks_itemname."','".$get_quantity."','".$stocks_priceperunit."','".$supplier_name."','".$category_name."','".$day."','".$week."','".$month."','".$year."') ";
+	$run_insert_invoice = mysqli_query($connect,$insert_invoice);
+
+
+
+
+
+
+
+
+
+
+
+
 
 date_default_timezone_set('Asia/Manila');
 $date_ph = date('F j, Y g:i:a  ');
@@ -425,7 +500,6 @@ $date_ph = date('F j, Y g:i:a  ');
 
 
 $username = $_SESSION['session_username'];
-
 
 	$logs_remarks = 'USER HAS ADDED STOCK ID '.$get_stocksid. 'TO INVOICE ID'.$get_invoiceid;
 	$insert_supplier = "INSERT INTO admin_logs (`logs_username`,`logs_remarks`,`logs_date`) VALUES ('".$username."','".$logs_remarks."','".$date_ph."') ";
@@ -953,6 +1027,53 @@ $date_ph = date('F j, Y g:i:a  ');
 
 
 }
+
+
+
+if(isset($_POST['add_extra_stocks'])){
+
+
+
+
+$add_stock = $_POST['add_stock'];
+$get_stocksid = $_POST['get_stocksid'];
+
+
+
+      $get_stocks = "SELECT * FROM admin_stocks WHERE stocks_id = '$get_stocksid' AND isDeleted='0'";
+      $run_stocks = mysqli_query($connect,$get_stocks);
+
+      while($row_stocks = mysqli_fetch_array($run_stocks))
+
+      {
+
+      	$get_stocks_quantity = $row_stocks['stocks_quantity'];
+
+
+
+
+
+      }
+
+      $new_quantity = (int)$get_stocks_quantity + (int)$add_stock;
+      $update_stocks = "UPDATE admin_stocks SET stocks_quantity = '$new_quantity' WHERE stocks_id = '$get_stocksid' AND isDeleted='0'";
+      $run_update_stocks = mysqli_query($connect,$update_stocks);
+
+
+
+			echo '<script language="javascript">';
+			echo 'alert("UPDATE SUCCESSFULLY SAVED")';
+			echo '</script>';
+			echo"<script>window.location.href='admin_stocks_new.php';</script>";
+
+
+
+
+
+
+}
+
+
 
 
 ?> 

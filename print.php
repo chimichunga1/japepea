@@ -87,11 +87,24 @@ $pdf->SetFont('Arial','B',12);
 $pdf->Cell(25 ,15,'',0,1);
 $pdf->Cell(54 ,7,$row['stocks_code'],0,0,'C');
 $pdf->Cell(54 ,7,$row['stocks_itemname'],0,0,'C');
-$pdf->Cell(54 ,7,'TOTAL : ',0,0,'C');
+$pdf->Cell(54 ,7,'SUB-TOTAL : ',0,0,'C');
 $pdf->Cell(30 ,7,"P ".$_SESSION['invoice_total'].".00",0,0,'C');
+$pdf->Cell(54 ,7,'',0,1);
+$pdf->Cell(105 ,7,'',0,0);
+$pdf->Cell(54 ,7,'12% VAT : ',0,0,'C');
+$pdf->Cell(35 ,7,'P  '.(int)$_SESSION['invoice_total']*.12,0,0,'C');
+$pdf->Cell(150 ,7,'',0,1);
+$pdf->Cell(102 ,7,'',0,0);
+$pdf->Cell(58 ,7,'TOTAL : ',0,0,'C');
+$pdf->Cell(35 ,7,"P ".$_SESSION['invoice_total'].".00",0,0,'C');
 
 
+/*                  <?php 
+                  $total_invoice = $_SESSION['invoice_total'] - (int)$_SESSION['invoice_total']*.12;
 
+                  echo  "P".(int)$_SESSION['invoice_total']*.12.".00";
+
+*/
 
 
 //add dummy cell at beginning of each line for indentation

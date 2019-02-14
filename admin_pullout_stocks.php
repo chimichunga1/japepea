@@ -68,130 +68,6 @@ include("admin_navbar.php");
 <br>
 
 
-<button class="btn btn-success col-md-12" data-toggle="collapse" data-target="#demo"> <center>ADD STOCKS &nbsp;<i class="glyphicon glyphicon-plus"></i></center></button>
-
-<div id="demo" class="collapse">
-  <br>
-  <br><br>
-            <!-- /.box-header -->
-            <div class="box-body">
-            <form method="POST" action="save_data.php">
-              <div class="box-body">
-
-<div class="row">
-
-  <div class="col-md-4">
-                <div class="form-group">
-                  <label for="exampleInputItemName">Item Name</label>
-                  <input type="text" class="form-control" name="stock_itemname" id="exampleInputItemName" placeholder="Enter Item Name" required>
-                </div>          
-  </div>
-<div class="col-md-4">
- 
-                <div class="form-group">
-                  <label for="exampleInputQuantity">Quantity</label>
-                  <input type="number" class="form-control" name="stock_quantity" id="exampleInputQuantity" min="1" max="99999" required>
-                </div>             
-</div>
-<div class="col-md-4">
-      
-                <div class="form-group">
-                  <label for="exampleInputPricePerUnit">Price Per Unit</label> 
-                  <input type="number" class="form-control"  name="stock_priceperunit" id="exampleInputPricePerUnit" min="1" max="99999" required>
-                </div>   
-</div>
-
-</div>
-      <!--           <div class="form-group">
-                  <label for="exampleInputCode">CODE</label>
-                  <input type="text" class="form-control" name="stock_code" id="exampleInputCode" placeholder="Enter CODE or Serial " required>
-                </div> -->
-<div class="row">
-
-<div class="col-md-6">
-                <div class="form-group">
-                  <label>Supplier</label>
-                  <select name="stock_supplierid" class="form-control">
-
-
-<?php 
-
-
-$table2 = "SELECT * FROM admin_suppliers WHERE isDeleted = '0'";
-        
-        
-        
-        $run_query2b = mysqli_query($connect,$table2);
-
-            while($row = mysqli_fetch_array($run_query2b))
-
-        {
-?>
-                    <option value="<?php echo $row['supplier_name']; ?>"><?php echo $row['supplier_name']; ?></option>
-   
-<?php 
-        }
-
-?>
-                  </select>
-                </div>
-  </div>
-<div class="col-md-6">
-                <div class="form-group">
-                  <label>Category</label>
-                  <select name="categories_supplierid" class="form-control">
-
-
-<?php 
-
-
-$table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
-        
-        
-        
-        $run_query2b = mysqli_query($connect,$table2);
-
-            while($row = mysqli_fetch_array($run_query2b))
-
-        {
-?>
-                    <option value="<?php echo $row['category_name']; ?>"><?php echo $row['category_name']; ?></option>
-   
-<?php 
-        }
-
-?>
-                  </select>
-                </div>
-  </div>
-
-</div>
-
-
-
-
-
-
-
-
-              </div>
-              <!-- /.box-body -->
-
-
-<br>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary col-md-12" name="add_stocks">Save</button>
-              </div>
-            </form>
-
-
-
-            </div>
-
-</div>
-
-<br>
-<br>
 
 <button class="btn btn-primary col-md-12" data-toggle="collapse" data-target="#invoice"> <center>GENERATE REPORTS &nbsp;<i class="glyphicon glyphicon-print"></i></center></button>
 
@@ -200,7 +76,7 @@ $table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
   <br><br>
             <!-- /.box-header -->
             <div class="box-body">
-<form method="POST" action="generate_stocks_weekly.php">
+<form method="POST" action="generate_pullout_weekly.php">
               <div class="box-body">
 
 
@@ -221,7 +97,7 @@ $table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
 <br>
 
 </form>
-            <form method="POST" action="generate_stocks_monthly.php">
+            <form method="POST" action="generate_pullout_monthly.php">
                   <div class="form-group">
                     <label>Select Month :</label>
                     <select name="month" class="form-control">
@@ -254,7 +130,7 @@ $table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
 
 </form>
 
-            <form method="POST" action="generate_stocks_monthly.php">
+            <form method="POST" action="generate_pullout_monthly.php">
 
                 <div class="form-group">
                   <label for="year">Enter Year : </label>
@@ -298,7 +174,7 @@ $table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
                   <th>Price Per Unit</th>
                   <th>Supplier</th>
                   <th>Category</th>   
-                  <th>Actions</th>
+            
                 </tr>
                 </thead>
                 <tbody>
@@ -307,7 +183,7 @@ $table2 = "SELECT * FROM admin_categories WHERE isDeleted = '0'";
 
 
 <?php 
-$table2 = "SELECT * FROM admin_stocks WHERE isDeleted = '0'";
+$table2 = "SELECT * FROM admin_pullout WHERE isDeleted = '0'";
         
         
         
@@ -328,19 +204,17 @@ $table2 = "SELECT * FROM admin_stocks WHERE isDeleted = '0'";
                   <td><?php echo $row['stocks_itemname']; ?></td>
                   <td><?php echo $row['stocks_quantity']; ?> </td>
                   <td><?php echo "P".$row['stocks_priceperunit'].".00"; ?></td>
-                  <td><?php echo $row['stocks_supplierid']; ?> </td>
-                  <td><?php echo $row['stocks_categoriesid']; ?> </td>
+                  <td><?php echo $row['supplier_name']; ?> </td>
+                  <td><?php echo $row['category_name']; ?> </td>
 
 <?php   
 
-$category_editmodal="category_editmodal".$row['stocks_id'];
-$category_delmodal="category_delmodal".$row['stocks_id'];
-$add_stocks_modal="add_stocks_modal".$row['stocks_id'];
+$category_editmodal="category_editmodal".$row['pullout_id'];
+$category_delmodal="category_delmodal".$row['pullout_id'];
+$add_stocks_modal="add_stocks_modal".$row['pullout_id'];
     echo '
 
-<td>
-<button class="btn btn-success"   data-toggle="modal" data-target="#'.$add_stocks_modal.'"><i class="glyphicon glyphicon-plus"></i></button>&nbsp;
-<button class="btn btn-danger"   data-toggle="modal" data-target="#'.$category_delmodal.'"><i class="glyphicon glyphicon-remove"></i></button></td>
+
    
 
 
@@ -378,7 +252,7 @@ $add_stocks_modal="add_stocks_modal".$row['stocks_id'];
 
     echo"
 <input type='number' class='form-control' name='add_stock' min='1' required>
-<input type='hidden' name='get_stocksid' value='".$row['stocks_id']."'>
+<input type='hidden' name='get_stocksid' value='".$row['pullout_id']."'>
 
 
 
@@ -447,7 +321,7 @@ Would you like to deactivate this Stocks ?
     </div>
                 </div>
                 <div class='modal-footer'>
-                <input type='hidden' name='get_stocksid' value='".$row['stocks_id']."'>
+                <input type='hidden' name='get_stocksid' value='".$row['pullout_id']."'>
                     <button type='submit' name='admin_delstocks'  class='btn btn-success'>Yes</button>
                     <button type='button' class='btn btn-danger' data-dismiss='modal'>No</button>
   </form>

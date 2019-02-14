@@ -31,14 +31,15 @@ CREATE TABLE `admin_accounts` (
   `isDeleted` varchar(255) NOT NULL DEFAULT '0',
   `isBlocked` varchar(255) DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admin_accounts` */
 
 insert  into `admin_accounts`(`user_id`,`user_firstname`,`user_middlename`,`user_lastname`,`username`,`password`,`accessright`,`isDeleted`,`isBlocked`) values 
 (1,'2','3','4','5','1','1','0','0'),
 (2,'admin',NULL,'admin','admin','admin','1','0','0'),
-(12,'Juan MIguel','','Ponce','miguel','123','1','0','0');
+(12,'Juan MIguel','','Ponce','miguel','123','1','0','0'),
+(13,'user','user','user','user','user','2','0','0');
 
 /*Table structure for table `admin_cashier` */
 
@@ -125,13 +126,16 @@ CREATE TABLE `admin_itemsordered` (
   `order_quantity` varchar(255) NOT NULL,
   `isDeleted` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`itemsordered_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admin_itemsordered` */
 
 insert  into `admin_itemsordered`(`itemsordered_id`,`invoice_id`,`stocks_id`,`order_quantity`,`isDeleted`) values 
 (1,'1','1','2','0'),
-(2,'1','9','33','0');
+(2,'1','9','33','0'),
+(3,'1','9','4','0'),
+(4,'1','1','10','0'),
+(5,'1','9','5','0');
 
 /*Table structure for table `admin_logs` */
 
@@ -143,7 +147,7 @@ CREATE TABLE `admin_logs` (
   `logs_remarks` varchar(255) NOT NULL,
   `logs_date` varchar(255) NOT NULL,
   PRIMARY KEY (`logs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admin_logs` */
 
@@ -186,7 +190,46 @@ insert  into `admin_logs`(`logs_id`,`logs_username`,`logs_remarks`,`logs_date`) 
 (36,'admin','USER HAS LOGGED IN','February 10, 2019 8:36:pm  '),
 (37,'admin','USER HAS LOGGED IN','February 10, 2019 8:38:pm  '),
 (38,'admin','USER HAS LOGGED IN','February 13, 2019 8:44:pm  '),
-(39,'admin','USER HAS LOGGED IN','February 13, 2019 10:18:pm  ');
+(39,'admin','USER HAS LOGGED IN','February 13, 2019 10:18:pm  '),
+(40,'admin','USER HAS LOGGED IN','February 14, 2019 8:43:pm  '),
+(41,'user','USER HAS CREATED user','February 14, 2019 9:00:pm  '),
+(42,'admin','USER HAS LOGGED OUT','February 14, 2019 9:00:pm  '),
+(43,'user','USER HAS LOGGED IN','February 14, 2019 9:00:pm  '),
+(44,'admin','USER HAS LOGGED IN','February 14, 2019 9:10:pm  '),
+(45,'admin','USER HAS LOGGED OUT','February 14, 2019 9:14:pm  '),
+(46,'user','USER HAS LOGGED IN','February 14, 2019 9:14:pm  '),
+(47,'user','USER HAS LOGGED IN','February 14, 2019 9:14:pm  '),
+(48,'user','USER HAS LOGGED OUT','February 14, 2019 9:18:pm  '),
+(49,'admin','USER HAS LOGGED IN','February 14, 2019 9:18:pm  '),
+(50,'admin','USER HAS ADDED STOCK ID 9TO INVOICE ID1','February 14, 2019 10:07:pm  '),
+(51,'admin','USER HAS ADDED STOCK ID 9TO INVOICE ID1','February 14, 2019 10:18:pm  ');
+
+/*Table structure for table `admin_pullout` */
+
+DROP TABLE IF EXISTS `admin_pullout`;
+
+CREATE TABLE `admin_pullout` (
+  `pullout_id` int(255) NOT NULL AUTO_INCREMENT,
+  `stocks_code` varchar(255) DEFAULT NULL,
+  `stocks_itemname` varchar(255) DEFAULT NULL,
+  `stocks_quantity` varchar(255) DEFAULT NULL,
+  `stocks_priceperunit` varchar(255) DEFAULT NULL,
+  `supplier_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `category_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `isDeleted` varchar(255) DEFAULT '0',
+  `day` varchar(255) DEFAULT NULL,
+  `week` varchar(255) DEFAULT NULL,
+  `month` varchar(255) DEFAULT NULL,
+  `year` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`pullout_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `admin_pullout` */
+
+insert  into `admin_pullout`(`pullout_id`,`stocks_code`,`stocks_itemname`,`stocks_quantity`,`stocks_priceperunit`,`supplier_name`,`category_name`,`isDeleted`,`day`,`week`,`month`,`year`) values 
+(1,'12036143','Summit','4','33','Romago','BEVERAGE','0',NULL,NULL,NULL,NULL),
+(2,'56895944','Cream-o','10','200','Romago','BISCUIT','0',NULL,NULL,NULL,NULL),
+(3,'12036143','Summit','5','33','Romago','BEVERAGE','0','14','07','February','2019');
 
 /*Table structure for table `admin_reports` */
 
@@ -253,8 +296,8 @@ CREATE TABLE `admin_stocks` (
 /*Data for the table `admin_stocks` */
 
 insert  into `admin_stocks`(`stocks_id`,`stocks_code`,`stocks_itemname`,`stocks_quantity`,`stocks_priceperunit`,`stocks_supplierid`,`stocks_categoriesid`,`isDeleted`,`day`,`week`,`month`,`year`) values 
-(1,'56895944','Cream-o','23','200','5','2','0','12','07','February','2019'),
-(9,'12036143','Summit','2','33','5','3','0','12','07','February','2019');
+(1,'56895944','Cream-o','13','200','5','2','0','12','07','February','2019'),
+(9,'12036143','Summit','5','33','5','3','0','12','07','February','2019');
 
 /*Table structure for table `admin_suppliers` */
 

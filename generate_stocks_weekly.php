@@ -90,6 +90,13 @@ $pdf->SetFont('Arial','',12);
 
 $table2 = "SELECT * FROM admin_stocks WHERE isDeleted = '0' AND week='$week' AND year = '$year'";
 $run_query2b = mysqli_query($connect,$table2);
+if(empty($run_query2b)){
+echo '<script language="javascript">';
+echo 'alert("THIS REPORT IS EMPTY!")';
+echo '</script>';
+echo"<script>window.location.href='admin_esales.php';</script>";  
+}
+
 while($row = mysqli_fetch_array($run_query2b))
 {
             $total_sales = $total_sales + (int)$row['stocks_priceperunit'];

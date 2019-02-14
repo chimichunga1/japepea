@@ -7,7 +7,7 @@ require('fpdf/fpdf.php');
 
 $total_sales = 0;
 
-$month = $_POST['month'];
+
 $year = $_POST['year'];
 
 
@@ -72,25 +72,27 @@ $pdf->Cell(25 ,25,'',0,1);
 $pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,1);//end of line
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(25 ,10,'',0,1);
-$pdf->Cell(54 ,10,'STOCKS LIST :   ',0,0,'C');
+
+$pdf->Cell(54 ,10,'PULL OUT REPORT :   ',0,0,'C');
+
+
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(25 ,10,'',0,1);
-$pdf->Cell(54 ,10,'Item Code  ',1,0,'C');
+$pdf->Cell(54 ,10,'Stocks Code  ',1,0,'C');
 $pdf->Cell(54 ,10,'Item Name  ',1,0,'C');
-$pdf->Cell(54 ,10,'Quantity  ',1,0,'C');
-$pdf->Cell(30 ,10,'Price  ',1,0,'C');
+$pdf->Cell(44 ,10,'Quantity  ',1,0,'C');
+$pdf->Cell(40 ,10,'Price per Unit ',1,0,'C');
 $pdf->Cell(25 ,3,'',0,1);
 $pdf->SetFont('Arial','',12);
 
-$table2 = "SELECT * FROM admin_stocks WHERE isDeleted = '0' AND month='$month' AND year = '$year'";
+$table2 = "SELECT * FROM admin_pullout WHERE isDeleted = '0' AND year = '$year'";
 $run_query2b = mysqli_query($connect,$table2);
 if(empty($run_query2b)){
 echo '<script language="javascript">';
 echo 'alert("THIS REPORT IS EMPTY!")';
 echo '</script>';
-echo"<script>window.location.href='admin_esales.php';</script>";  
+echo"<script>window.location.href='admin_pullout_stocks.php';</script>";  
 }
-
 while($row = mysqli_fetch_array($run_query2b))
 {
             $total_sales = $total_sales + (int)$row['stocks_priceperunit'];
@@ -99,8 +101,8 @@ while($row = mysqli_fetch_array($run_query2b))
 $pdf->Cell(25 ,7,'',0,1);
 $pdf->Cell(54 ,7,$row['stocks_code'],1,0,'C');
 $pdf->Cell(54 ,7,$row['stocks_itemname'],1,0,'C');
-$pdf->Cell(54 ,7,$row['stocks_quantity'],1,0,'C');
-$pdf->Cell(30 ,7,"P ".$row['stocks_priceperunit'].".00",1,0,'C');
+$pdf->Cell(44 ,7,$row['stocks_quantity'],1,0,'C');
+$pdf->Cell(40 ,7,"P ".$row['stocks_priceperunit'].".00",1,0,'C');
 
 
 }
@@ -108,7 +110,7 @@ $pdf->SetFont('Arial','B',12);
 $pdf->Cell(25 ,15,'',0,1);
 $pdf->Cell(54 ,7,'',0,0,'C');
 $pdf->Cell(54 ,7,'',0,0,'C');
-$pdf->Cell(54 ,7,'TOTAL : ',0,0,'C');
+$pdf->Cell(54 ,7,'TOTAL VAT SALES: ',0,0,'C');
 $pdf->Cell(30 ,7,"P ".$final_sales.".00",0,0,'C');
 
 

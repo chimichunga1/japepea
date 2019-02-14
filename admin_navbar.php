@@ -37,6 +37,8 @@ if($_SESSION["accessright"] == '1')
           <ul class="dropdown-menu">
             <li><a href="admin_view_invoice_new.php">View Invoice</a></li>
             <li><a href="admin_sales_reports_new.php">Reports</a></li>
+            <li><a href="admin_pullout_stocks.php">Pull out Stocks</a></li>
+
           </ul>
         </li>
       
@@ -78,7 +80,22 @@ if($_SESSION["accessright"] == '1')
 
 
         </li> -->
+
+<?php 
+
+if($_SESSION["accessright"] == '1')
+{
+  ?>
  <li><a href="admin_employee.php">Employee</a></li>
+  <?php
+}
+
+
+
+
+ ?>
+
+
       </ul>
 
 
@@ -120,7 +137,7 @@ if($_SESSION["accessright"] == '1')
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome, <?php echo $_SESSION["username"]; ?><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">My Profile</a></li>
+<!--             <li><a href="#">My Profile</a></li> -->
             <li><a href="signout.php">Logout</a></li>
    
           </ul>

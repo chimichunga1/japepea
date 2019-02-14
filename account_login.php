@@ -73,7 +73,7 @@ if(isset($_POST['Login']))
 		    $_SESSION['username']=$search['username'];
 		    $_SESSION["user_id"] = $search["user_id"];
 		    $_SESSION["accessright"] = $search['accessright'];
-
+		$_SESSION["check_login"] = $search['username'];	
 			echo '<script language="javascript">'; ?>
 				<?php echo 'alert("Welcome ' . $_SESSION['check_login'] . '")'; ?>
 			<?php echo '</script>';
