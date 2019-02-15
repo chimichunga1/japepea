@@ -47,7 +47,14 @@
 }
 </style>
 
-
+<style type="text/css">
+  
+body {
+    height: 670px;
+    background: linear-gradient(to bottom, #33ccff 0%, #66ff99 100%)
+}
+  
+</style>
 </head>
 
 <body>
@@ -84,7 +91,7 @@ include("admin_navbar.php");
 <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputContactName">Contact Person</label>
-                  <input type="text" name="contact_person" class="form-control" id="exampleInputContactName" placeholder="Enter Contat Person" required>
+                  <input type="number" max="99999999999" name="contact_person" class="form-control" id="exampleInputContactName" placeholder="Enter Contat Person" required>
                 </div>     
 </div>
 <div class="col-md-4">

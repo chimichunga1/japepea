@@ -48,7 +48,14 @@
 }
 </style>
 
-
+<style type="text/css">
+  
+body {
+    height: 670px;
+    background: linear-gradient(to bottom, #33ccff 0%, #66ff99 100%)
+}
+  
+</style>
 </head>
 
 <body>
@@ -118,14 +125,14 @@ include("admin_navbar.php");
 
                 <div class="form-group">
                   <label for="sssNo">SSS Number</label>
-                  <input type="number" class="form-control" id="sssNo" placeholder="Enter the SSS Number" name="employee_sss_number" required>
+                  <input type="number" class="form-control" id="sssNo" placeholder="Enter the SSS Number" name="employee_sss_number" max="99999999999" required>
                 </div>
 </div>
 
 <div class="col-md-6">
                 <div class="form-group">
                   <label for="philhealth">Philhealth</label>
-                  <input type="number" class="form-control" id="philhealth" placeholder="Enter the Philhealth number" name="employee_philhealth" required>
+                  <input type="number" class="form-control" id="philhealth" placeholder="Enter the Philhealth number" name="employee_philhealth" max="99999999999" required>
                 </div>
 
 </div>
@@ -140,7 +147,7 @@ include("admin_navbar.php");
 <div class="col-md-4">
                 <div class="form-group">
                   <label for="contactNo">Contact Number</label>
-                  <input type="number" class="form-control" id="contactNo" placeholder="Contact Number" name="employee_contact_no" required>
+                  <input type="number" class="form-control" id="contactNo" placeholder="Contact Number" name="employee_contact_no" max="99999999999" required>
                 </div>
 
 </div>
@@ -154,7 +161,7 @@ include("admin_navbar.php");
 <div class="col-md-4">
                 <div class="form-group">
                   <label for="contactNoperson">Contact Person's Contact Number</label>
-                  <input type="number" class="form-control" id="contactNoperson" placeholder="Contact Person's Contact Number" name="employee_contact_no_person" required>
+                  <input type="number" class="form-control" id="contactNoperson" placeholder="Contact Person's Contact Number" name="employee_contact_no_person" max="99999999999" required>
                 </div>
 </div>
 

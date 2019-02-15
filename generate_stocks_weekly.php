@@ -69,13 +69,8 @@ $pdf->Cell(25 ,5,'Customer ID : ',0,0);*/
 
 /*$pdf->Cell(34 ,5,$userid,0,1);//end of line USER ID*/
 //make a dummy empty cell as a vertical spacer
-$pdf->Cell(189 ,10,'',0,1);//end of line
-//billing address
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(25 ,25,'',0,1);
-/*$pdf->Cell(120 ,5   ,'DATE CREATED: '.date("Y-m-d h:i A"),0,1);//end of line*/
-/*$pdf->Cell(120 ,5,'PREPARED BY: '.$get_username,0,1);//end of line*/
-$pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,1);//end of line
+$pdf->Cell(189 ,15,'',0,1);//end of line
+
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(25 ,10,'',0,1);
 $pdf->Cell(54 ,10,'STOCKS LIST :   ',0,0,'C');
@@ -117,7 +112,13 @@ $pdf->Cell(54 ,7,'',0,0,'C');
 $pdf->Cell(54 ,7,'TOTAL : ',0,0,'C');
 $pdf->Cell(30 ,7,"P ".$final_sales.".00",0,0,'C');
 
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell(25 ,15,'',0,1);
 
+/*$pdf->Cell(120 ,5   ,'DATE CREATED: '.date("Y-m-d h:i A"),0,1);//end of line*/
+/*$pdf->Cell(120 ,5,'PREPARED BY: '.$get_username,0,1);//end of line*/
+$pdf->Cell(120 ,5   ,'PREPARED BY : '.$username,0,0);//end of line
+$pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,0);//end of line
 
 
 

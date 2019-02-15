@@ -48,7 +48,12 @@
 }
 </style>
 
-
+<style>
+body {
+    height: 670px;
+    background: linear-gradient(to bottom, #33ccff 0%, #66ff99 100%)
+}
+</style>
 </head>
 
 <body>

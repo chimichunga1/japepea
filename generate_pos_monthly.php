@@ -119,7 +119,7 @@ $pdf->Cell(25 ,25,'',0,1);
 /*$pdf->Cell(120 ,5   ,'DATE CREATED: '.date("Y-m-d h:i A"),0,1);//end of line*/
 /*$pdf->Cell(120 ,5,'PREPARED BY: '.$get_username,0,1);//end of line*/
 $pdf->Cell(120 ,5   ,'PREPARED BY : '.$username,0,0);//end of line
-$pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,0);//end of line
+$pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,0);//end of PDF_lineto(p, x, y)
 /*$pdf->SetFont('Arial','B',12);
 $pdf->Cell(25 ,15,'',0,1);
 $pdf->Cell(54 ,7,'',0,0,'C');

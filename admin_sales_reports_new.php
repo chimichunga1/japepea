@@ -50,6 +50,14 @@
 
 
 </head>
+<style type="text/css">
+  
+body {
+    height: 670px;
+    background: linear-gradient(to bottom, #33ccff 0%, #66ff99 100%)
+}
+  
+</style>
 
 <body>
 <?php

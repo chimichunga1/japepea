@@ -31,9 +31,15 @@
   left: 100%;
   margin-top: -1px;
 }
+
 </style>
 
-
+<style>
+body {
+    height: 670px;
+    background: linear-gradient(to bottom, #33ccff 0%, #66ff99 100%)
+}
+</style>
 </head>
 
 <body>
