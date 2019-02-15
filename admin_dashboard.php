@@ -34,9 +34,22 @@
 </style>
 
 
+<style>
+.img-bg-here {
+  /* The image used */
+  background-image: url("css/bg.png");
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+</style>
+
+
 </head>
 
-<body>
+<body style="background-image: url('css/bg.png');height: 30%;background-repeat: no-repeat;background-size: cover;">
 <?php
 
 
@@ -46,6 +59,24 @@ include("admin_navbar.php");
 
 
 ?>
+
+<div style="background-image: url('css/bg.png');height: 100%; background-position: center;background-repeat: no-repeat;background-size: cover;">
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script>
