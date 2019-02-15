@@ -738,8 +738,10 @@ $pos_check = $_POST['posno'];
 
 if($pos_check == '1'){
 $posno = "POS 1";
+$posid = "1";
 }else{
 $posno = "POS 2";
+$posid = "2";
 }
 
 
@@ -755,7 +757,7 @@ $month = date('F');
 $year = date('Y');
 
 
-$insert_sales = "INSERT INTO admin_sales (`sales_date`,`sales_posno`,`sales_vatmerchsales`,`sales_vatcomtrans`,`sales_vatsales`,`sales_nonvatsales`,`sales_vatexscsales`,`sales_vatexsales`,`day`,`week`,`month`,`year`) VALUES ('".$date."','".$posno."','".$vatmerchsales."','".$vatcomtrans."','".$vatsales."','".$nonvatsales."','".$vatexscsales."','".$vatexsales."','".$day."','".$week."','".$month."','".$year."') ";
+$insert_sales = "INSERT INTO admin_sales (`sales_date`,`sales_posno`,`sales_vatmerchsales`,`sales_vatcomtrans`,`sales_vatsales`,`sales_nonvatsales`,`sales_vatexscsales`,`sales_vatexsales`,`day`,`week`,`month`,`year`,`posid`) VALUES ('".$date."','".$posno."','".$vatmerchsales."','".$vatcomtrans."','".$vatsales."','".$nonvatsales."','".$vatexscsales."','".$vatexsales."','".$day."','".$week."','".$month."','".$year."','".$posid."') ";
 			$run_insert_sales = mysqli_query($connect,$insert_sales);
 
 

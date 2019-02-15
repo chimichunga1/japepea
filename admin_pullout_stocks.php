@@ -130,7 +130,7 @@ include("admin_navbar.php");
 
 </form>
 
-            <form method="POST" action="generate_pullout_monthly.php">
+            <form method="POST" action="generate_pullout_yearly.php">
 
                 <div class="form-group">
                   <label for="year">Enter Year : </label>

@@ -147,7 +147,7 @@ CREATE TABLE `admin_logs` (
   `logs_remarks` varchar(255) NOT NULL,
   `logs_date` varchar(255) NOT NULL,
   PRIMARY KEY (`logs_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admin_logs` */
 
@@ -202,7 +202,9 @@ insert  into `admin_logs`(`logs_id`,`logs_username`,`logs_remarks`,`logs_date`) 
 (48,'user','USER HAS LOGGED OUT','February 14, 2019 9:18:pm  '),
 (49,'admin','USER HAS LOGGED IN','February 14, 2019 9:18:pm  '),
 (50,'admin','USER HAS ADDED STOCK ID 9TO INVOICE ID1','February 14, 2019 10:07:pm  '),
-(51,'admin','USER HAS ADDED STOCK ID 9TO INVOICE ID1','February 14, 2019 10:18:pm  ');
+(51,'admin','USER HAS ADDED STOCK ID 9TO INVOICE ID1','February 14, 2019 10:18:pm  '),
+(52,'admin','USER HAS LOGGED IN','February 15, 2019 10:23:pm  '),
+(53,'admin','USER HAS LOGGED IN','February 15, 2019 11:08:pm  ');
 
 /*Table structure for table `admin_pullout` */
 
@@ -265,13 +267,18 @@ CREATE TABLE `admin_sales` (
   `month` varchar(255) DEFAULT NULL,
   `year` varchar(255) DEFAULT NULL,
   `isDeleted` varchar(255) DEFAULT '0',
+  `posid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`sales_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admin_sales` */
 
-insert  into `admin_sales`(`sales_id`,`sales_date`,`sales_posno`,`sales_vatmerchsales`,`sales_vatcomtrans`,`sales_vatsales`,`sales_nonvatsales`,`sales_vatexscsales`,`sales_vatexsales`,`day`,`week`,`month`,`year`,`isDeleted`) values 
-(1,'2019-12-08','POS 1','2500','1000','2000','3000','1400','200','13','07','February','2019','0');
+insert  into `admin_sales`(`sales_id`,`sales_date`,`sales_posno`,`sales_vatmerchsales`,`sales_vatcomtrans`,`sales_vatsales`,`sales_nonvatsales`,`sales_vatexscsales`,`sales_vatexsales`,`day`,`week`,`month`,`year`,`isDeleted`,`posid`) values 
+(1,'2019-12-08','POS 1','2500','1000','2000','3000','1400','200','13','07','February','2019','0','1'),
+(2,'February 15 2019','POS 1','1','2','3','4','1','1','15','07','February','2019','0','1'),
+(3,'February 15 2019','POS 2','1','2','13','4','5','6','15','07','February','2019','0','2'),
+(4,'February 15 2019','POS 2','1','5','4','1','3','6','15','07','February','2019','0','2'),
+(5,'February 15 2019','POS 2','5','4','5','1','3','7','15','07','February','2019','0','2');
 
 /*Table structure for table `admin_stocks` */
 

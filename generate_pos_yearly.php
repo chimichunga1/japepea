@@ -5,11 +5,11 @@ require('fpdf/fpdf.php');
 
 if($_POST['pos_id'] == 'pos1'){
     $pos_name = "POS 1";
-    $pos_id = "POS 1";
+    $pos_id = "1";
 
 }else{
     $pos_name = "POS 2";  
-    $pos_id = "POS 2";
+    $pos_id = "2";
 }
 
 
@@ -94,9 +94,9 @@ $pdf->Cell(40 ,10,'Non-Vat Sales  ',1,0,'C');
 $pdf->Cell(25 ,3,'',0,1);
 $pdf->SetFont('Arial','',12);
 
-$table2 = "SELECT * FROM admin_sales WHERE isDeleted = '0' AND year = '$year' AND sales_posno = '$pos_id'";
+$table2 = "SELECT * FROM admin_sales WHERE isDeleted = '0' AND year = '$year' AND posid = '$pos_id'";
 $run_query2b = mysqli_query($connect,$table2);
-if(empty($run_query2b)){
+if (mysqli_num_rows($run_query2b)==0){
 echo '<script language="javascript">';
 echo 'alert("THIS REPORT IS EMPTY!")';
 echo '</script>';
@@ -116,12 +116,12 @@ $pdf->Cell(40 ,7,"P ".$row['sales_nonvatsales'].".00",1,0,'C');
 
 
 }
-$pdf->SetFont('Arial','B',12);
+/*$pdf->SetFont('Arial','B',12);
 $pdf->Cell(25 ,15,'',0,1);
 $pdf->Cell(54 ,7,'',0,0,'C');
 $pdf->Cell(54 ,7,'',0,0,'C');
 $pdf->Cell(54 ,7,'TOTAL VAT SALES: ',0,0,'C');
-$pdf->Cell(30 ,7,"P ".$final_sales.".00",0,0,'C');
+$pdf->Cell(30 ,7,"P ".$final_sales.".00",0,0,'C');*/
 
 
 

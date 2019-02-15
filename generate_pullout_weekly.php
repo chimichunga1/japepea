@@ -70,11 +70,7 @@ $pdf->Cell(25 ,5,'Customer ID : ',0,0);*/
 //make a dummy empty cell as a vertical spacer
 $pdf->Cell(189 ,10,'',0,1);//end of line
 //billing address
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(25 ,25,'',0,1);
-/*$pdf->Cell(120 ,5   ,'DATE CREATED: '.date("Y-m-d h:i A"),0,1);//end of line*/
-/*$pdf->Cell(120 ,5,'PREPARED BY: '.$get_username,0,1);//end of line*/
-$pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,1);//end of line
+
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(25 ,10,'',0,1);
 
@@ -92,16 +88,20 @@ $pdf->SetFont('Arial','',12);
 
 $table2 = "SELECT * FROM admin_pullout WHERE isDeleted = '0' AND week='$week' AND year = '$year'";
 $run_query2b = mysqli_query($connect,$table2);
-if(empty($run_query2b)){
+
+if (mysqli_num_rows($run_query2b)==0){
 echo '<script language="javascript">';
 echo 'alert("THIS REPORT IS EMPTY!")';
 echo '</script>';
 echo"<script>window.location.href='admin_pullout_stocks.php';</script>";  
 }
+$tax_sales = 0;
+$final_tax_sales = 0;
 while($row = mysqli_fetch_array($run_query2b))
 {
             $total_sales = $total_sales + (int)$row['stocks_priceperunit'];
             $final_sales = $total_sales;
+            $final_tax_sales = $final_tax_sales + ((int)$row['stocks_priceperunit'] + (int)$row['stocks_priceperunit']*.12);
 
 $pdf->Cell(25 ,7,'',0,1);
 $pdf->Cell(54 ,7,$row['stocks_code'],1,0,'C');
@@ -114,13 +114,23 @@ $pdf->Cell(40 ,7,"P ".$row['stocks_priceperunit'].".00",1,0,'C');
 $pdf->SetFont('Arial','B',12);
 $pdf->Cell(25 ,15,'',0,1);
 $pdf->Cell(54 ,7,'',0,0,'C');
+$pdf->Cell(49 ,7,'',0,0,'C');
+$pdf->Cell(54 ,7,'TOTAL SALES: ',0,0,'C');
+$pdf->Cell(30 ,7,"P ".$final_sales.".00",0,0,'C');
+$pdf->Cell(25 ,7,'',0,1);
+$pdf->Cell(54 ,7,'',0,0,'C');
 $pdf->Cell(54 ,7,'',0,0,'C');
 $pdf->Cell(54 ,7,'TOTAL VAT SALES: ',0,0,'C');
-$pdf->Cell(30 ,7,"P ".$final_sales.".00",0,0,'C');
+$pdf->Cell(30 ,7,"P ".$final_tax_sales,0,0,'C');
 
 
-
-
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell(25 ,25,'',0,1);
+/*$pdf->Cell(120 ,5   ,'DATE CREATED: '.date("Y-m-d h:i A"),0,1);//end of line*/
+/*$pdf->Cell(120 ,5,'PREPARED BY: '.$get_username,0,1);//end of line*/
+$pdf->Cell(120 ,5   ,'PREPARED BY : '.$username,0,0);//end of line
+$pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,0);//end of PDF_lineto(p, x, y)
+/*$pdf->SetFont('Arial','B',12);
 
 /*$pdf->Cell(80 ,5,'Starting Time : ',0,0);
 $pdf->Cell(20 ,5,$timestart,0,1);

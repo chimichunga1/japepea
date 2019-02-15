@@ -295,7 +295,7 @@ if((int)$_POST['week'] < 10){
 
 
 <?php 
-$table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 1' AND week = '$week' AND year = '$year' AND  isDeleted = '0' ORDER BY week ASC";
+$table2 = "SELECT * FROM admin_sales WHERE posid = '1' AND week = '$week' AND year = '$year' AND  isDeleted = '0' ORDER BY week ASC";
         
         
         
@@ -357,7 +357,7 @@ $table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 1' AND week = '$we
 
 
 <?php 
-$table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 1' AND month = '$month' AND year = '$year' AND  isDeleted = '0' ORDER BY week ASC";
+$table2 = "SELECT * FROM admin_sales WHERE posid = '1' AND month = '$month' AND year = '$year' AND  isDeleted = '0' ORDER BY week ASC";
         
         
         
@@ -417,7 +417,7 @@ $table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 1' AND month = '$m
 
 
 <?php 
-$table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 1' AND year = '$year' AND  isDeleted = '0' ORDER BY month ASC";
+$table2 = "SELECT * FROM admin_sales WHERE posid = '1' AND year = '$year' AND  isDeleted = '0' ORDER BY month ASC";
         
         
         
@@ -480,7 +480,7 @@ $year = date('Y');
 
 
 <?php 
-$table2 = "SELECT * FROM admin_sales WHERE sales_posno = 'POS 1' AND day = '$day' AND month = '$month' AND year = '$year' AND isDeleted = '0'";
+$table2 = "SELECT * FROM admin_sales WHERE posid = '1' AND day = '$day' AND month = '$month' AND year = '$year' AND isDeleted = '0'";
         
         
         

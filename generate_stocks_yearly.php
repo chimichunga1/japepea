@@ -84,11 +84,11 @@ $pdf->SetFont('Arial','',12);
 
 $table2 = "SELECT * FROM admin_stocks WHERE isDeleted = '0' AND year = '$year'";
 $run_query2b = mysqli_query($connect,$table2);
-if(empty($run_query2b)){
+if(isset($run_query2b)){
 echo '<script language="javascript">';
 echo 'alert("THIS REPORT IS EMPTY!")';
 echo '</script>';
-echo"<script>window.location.href='admin_esales.php';</script>";  
+echo"<script>window.location.href='admin_stocks_new.php';</script>";  
 }
 
 while($row = mysqli_fetch_array($run_query2b))

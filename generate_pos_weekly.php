@@ -5,11 +5,11 @@ require('fpdf/fpdf.php');
 
 if($_POST['pos_id'] == 'pos1'){
     $pos_name = "POS 1";
-    $pos_id = "POS 1";
+    $pos_id = "1";
 
 }else{
     $pos_name = "POS 2";  
-    $pos_id = "POS 2";
+    $pos_id = "2";
 }
 
 
@@ -79,53 +79,89 @@ $pdf->Cell(25 ,5,'Customer ID : ',0,0);*/
 //make a dummy empty cell as a vertical spacer
 $pdf->Cell(189 ,10,'',0,1);//end of line
 //billing address
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(25 ,25,'',0,1);
-/*$pdf->Cell(120 ,5   ,'DATE CREATED: '.date("Y-m-d h:i A"),0,1);//end of line*/
-/*$pdf->Cell(120 ,5,'PREPARED BY: '.$get_username,0,1);//end of line*/
-$pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,1);//end of line
+$pdf->Cell(25 ,10,'',0,1);
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(25 ,10,'',0,1);
 
-$pdf->Cell(54 ,10,'POS 1 REPORT :   ',0,0,'C');
+$pdf->Cell(192 ,10,'POS '.$pos_id.' REPORT :   ',0,0,'C');
 
 
 $pdf->SetFont('Arial','B',15);
 $pdf->Cell(25 ,10,'',0,1);
-$pdf->Cell(54 ,10,'Date  ',1,0,'C');
-$pdf->Cell(54 ,10,'Vat Merch  ',1,0,'C');
-$pdf->Cell(44 ,10,'Vat Sales  ',1,0,'C');
-$pdf->Cell(40 ,10,'Non-Vat Sales  ',1,0,'C');
+$pdf->Cell(34 ,10,'Date  ',1,0,'C');
+$pdf->Cell(27 ,10,'  VM  ',1,0,'C');
+$pdf->Cell(27 ,10,'VS  ',1,0,'C');
+$pdf->Cell(28 ,10,'Non-VS  ',1,0,'C');
+$pdf->Cell(27 ,10,'VEXSCS  ',1,0,'C');
+$pdf->Cell(24 ,10,'VEXS  ',1,0,'C');
+$pdf->Cell(20 ,10,'VCT  ',1,0,'C');
+
+
+
 $pdf->Cell(25 ,3,'',0,1);
 $pdf->SetFont('Arial','',12);
 
-$table2 = "SELECT * FROM admin_sales WHERE isDeleted = '0' AND week='$week' AND year = '$year' AND sales_posno = '$pos_id'";
+$table2 = "SELECT * FROM admin_sales WHERE isDeleted = '0' AND week='$week' AND year = '$year' AND posid = '$pos_id'";
 $run_query2b = mysqli_query($connect,$table2);
-if(empty($run_query2b)){
-echo '<script language="javascript">';
+if (mysqli_num_rows($run_query2b)==0){
+  echo '<script language="javascript">';
 echo 'alert("THIS REPORT IS EMPTY!")';
 echo '</script>';
 echo"<script>window.location.href='admin_esales.php';</script>";  
+  
 }
+
+
 while($row = mysqli_fetch_array($run_query2b))
 {
             $total_sales = $total_sales + (int)$row['sales_vatsales'];
             $final_sales = $total_sales;
 
 $pdf->Cell(25 ,7,'',0,1);
-$pdf->Cell(54 ,7,$row['sales_date'],1,0,'C');
-$pdf->Cell(54 ,7,$row['sales_vatmerchsales'],1,0,'C');
-$pdf->Cell(44 ,7,$row['sales_vatsales'],1,0,'C');
-$pdf->Cell(40 ,7,"P ".$row['sales_nonvatsales'].".00",1,0,'C');
+$pdf->Cell(34 ,7,$row['sales_date'],1,0,'C');
+$pdf->Cell(27 ,7,"P ".$row['sales_vatmerchsales'].".00",1,0,'C');
+$pdf->Cell(27 ,7,"P ".$row['sales_vatsales'].".00",1,0,'C');
+$pdf->Cell(28 ,7,"P ".$row['sales_nonvatsales'].".00",1,0,'C');
+$pdf->Cell(27 ,7,"P ".$row['sales_vatexscsales'].".00",1,0,'C');
+$pdf->Cell(24 ,7,"P ".$row['sales_vatexsales'].".00",1,0,'C');
 
+$pdf->Cell(20 ,7,"P ".$row['sales_vatcomtrans'].".00",1,0,'C');
 
 }
+
+
 $pdf->SetFont('Arial','B',12);
+$pdf->Cell(25 ,8,'',0,1);
+$pdf->Cell(25 ,10,'LEGENDS : ',0,1);
+$pdf->Cell(58 ,5,'VS : VAT SALES',0,0);
+$pdf->Cell(65 ,5,'VEXSCS : Vat Exempt SC Sales',0,0);
+$pdf->Cell(50 ,5,'Non-VS : Non Vatable Sales ',0,1);
+
+$pdf->Cell(58 ,5,'VM : VAT MERCHANDISE',0,0);
+$pdf->Cell(65 ,5,'VEXS : Vat Exemption Sales ',0,0);
+$pdf->Cell(50 ,5,'VCT : Vat Commission Transaction',0,1);
+
+/*$pdf->Cell(25 ,5,'VEXSCS : Vat Exempt SC Sales',0,1);
+$pdf->Cell(25 ,5,'VEXS : Vat Exemption Sales VCT : Vat Commission Transaction',0,1);*/
+
+
+
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell(25 ,15,'',0,1);
+
+/*$pdf->Cell(120 ,5   ,'DATE CREATED: '.date("Y-m-d h:i A"),0,1);//end of line*/
+/*$pdf->Cell(120 ,5,'PREPARED BY: '.$get_username,0,1);//end of line*/
+$pdf->Cell(120 ,5   ,'PREPARED BY : '.$username,0,0);//end of line
+$pdf->Cell(120 ,5   ,'DATA AS OF : '.date("Y-m-d h:i A"),0,0);//end of line
+/*$pdf->SetFont('Arial','B',12);
 $pdf->Cell(25 ,15,'',0,1);
 $pdf->Cell(54 ,7,'',0,0,'C');
 $pdf->Cell(54 ,7,'',0,0,'C');
 $pdf->Cell(54 ,7,'TOTAL VAT SALES: ',0,0,'C');
-$pdf->Cell(30 ,7,"P ".$final_sales.".00",0,0,'C');
+if(isset($final_sales)){
+    $pdf->Cell(30 ,7,"P ".$final_sales.".00",0,0,'C');
+}
+*/
 
 
 
