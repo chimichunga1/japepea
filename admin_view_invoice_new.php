@@ -18,24 +18,10 @@
     <script src="bs/js/bootstrap.min.js"></script>
  <script src="new_js/jquery.dataTables.min.js"></script> 
    <link rel="stylesheet" href="new_css/dataTables.bootstrap.min.css" />
-<!--            <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
-           <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
-           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />   -->
-
-           
-
-
- <!--    <link href="bs/css/bootstrap.min.css" rel="stylesheet">
-
-
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
-
-    <script src="bs/js/bootstrap.min.js"></script>
-
 
            <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
            <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
-           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />   -->
+           <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
 <style>
 .dropdown-submenu {
   position: relative

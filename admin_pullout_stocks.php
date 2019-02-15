@@ -96,7 +96,7 @@ include("admin_navbar.php");
 
                 <div class="form-group">
                   <label for="year">Enter Year : </label>
-                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                  <input type="number" class="form-control" min="2019" id="year" placeholder="Enter Year" name="year" required>
                 </div>
 
 
@@ -127,7 +127,7 @@ include("admin_navbar.php");
 
                 <div class="form-group">
                   <label for="year">Enter Year : </label>
-                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                  <input type="number" class="form-control" min="2019" id="year" placeholder="Enter Year" name="year" required>
                 </div>
 
 
@@ -141,7 +141,7 @@ include("admin_navbar.php");
 
                 <div class="form-group">
                   <label for="year">Enter Year : </label>
-                  <input type="number" class="form-control" min="2012" max="2019" id="year" placeholder="Enter Year" name="year" required>
+                  <input type="number" class="form-control" min="2019" id="year" placeholder="Enter Year" name="year" required>
                 </div>
 
 
